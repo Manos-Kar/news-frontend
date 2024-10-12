@@ -68,7 +68,12 @@ export function encodeCredentials(username: string, password: string) {
   return btoa(credentials); // Base64 encode the credentials
 }
 
-export function saveCredentialsToCookie(username: string, password: string) {
+export function saveCredentialsToCookie(
+  username: string,
+  password: string,
+  csrfToken: string
+) {
   const encodedCredentials = encodeCredentials(username, password);
   Cookies.set("credentials", encodedCredentials, { expires: 20, secure: true }); // Cookie expires in 7 days
+  Cookies.set("csrftoken", csrfToken, { expires: 20, secure: true }); // Cookie expires in 7 days
 }

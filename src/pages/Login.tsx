@@ -37,7 +37,8 @@ export default function Login(props: Props) {
         if (res.status !== 200) {
           alert(res.error);
         } else {
-          saveCredentialsToCookie(username, password);
+          const csrfToken = res.data.csrfToken;
+          saveCredentialsToCookie(username, password, csrfToken);
           props.setLoggedIn(true);
         }
       });
