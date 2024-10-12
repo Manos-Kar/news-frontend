@@ -1,0 +1,25 @@
+$bg_color: #2b2b2b;
+$bg_colorHover: #484848;
+$bg_color2: #232323;
+$bg_color3: #ffffff;
+$action: #e74c3c;
+$success: #27ae60;
+$inactive: #555555;
+$text_basic: #d2f769;
+
+$bigFontSize: 240px;
+$subtitleFontSize: 40px;
+
+@mixin bigFont {
+  font-family: "THICCCBOI-Bold";
+  font-size: $bigFontSize;
+  font-weight: 500;
+  color: $text_basic;
+}
+
+@mixin subtitle {
+  font-family: "THICCCBOI-Bold";
+  font-size: $subtitleFontSize;
+  font-weight: 500;
+  color: $text_basic;
+}

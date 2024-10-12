@@ -1,0 +1,248 @@
+@import "./_variables.scss";
+
+body {
+  margin: 0;
+  font-family: "Arial";
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  background-color: $bg_color2;
+  color: $text_basic;
+}
+
+.App-header {
+  position: fixed;
+  top: 0px;
+  width: 100%;
+  height: 40px;
+  background-color: $bg_color2;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid $inactive;
+  z-index: 1;
+  .appHeaderText {
+    font-size: 18px;
+    color: $text_basic;
+    margin-left: 40px;
+    margin-right: 10px;
+  }
+  .buttonContainer {
+    display: flex;
+    .headerButton {
+      background-color: transparent;
+      width: 160px;
+      border: none;
+      color: $text_basic;
+      padding: 10px 0px;
+      text-align: center;
+      text-decoration: none;
+      display: inline-block;
+      font-size: 16px;
+      margin: 4px 2px;
+      cursor: pointer;
+      border-radius: 10px;
+      &:hover {
+        text-decoration: underline;
+        font-weight: bold;
+      }
+    }
+  }
+}
+
+.basicPageComponent {
+  margin-top: 40px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  .submenu {
+    display: flex;
+    flex-direction: row;
+    align-self: flex-start;
+    align-items: center;
+    justify-content: space-between;
+    width: 95%;
+    .logoSubtitleContainer {
+      display: flex;
+      flex-direction: row;
+      align-self: flex-start;
+      align-items: center;
+      justify-content: center;
+      .mainLogo {
+        padding-left: 10%;
+        height: 60px;
+        margin: 10px;
+      }
+      .subtitle {
+        width: 300px;
+        text-align: left;
+        font-size: 26px;
+        color: $text_basic;
+        font-weight: bold;
+        margin: 10px;
+      }
+    }
+    .sortReloadContainer {
+      display: flex;
+      flex-direction: row;
+      align-self: flex-start;
+      align-items: center;
+      justify-content: center;
+
+      height: 80px;
+      .sortDropdown {
+        background-color: $bg_color2;
+        color: white;
+        border-radius: 5px;
+        height: 30px;
+        width: 100px;
+        margin-left: 5px;
+        cursor: pointer;
+      }
+      .reloadButton {
+        background-color: $bg_color2;
+        color: $text_basic;
+        border-radius: 5px;
+        height: 30px;
+        width: 140px;
+        margin-left: 10px;
+        cursor: pointer;
+      }
+    }
+  }
+  .tilesContainer {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    /*************  ✨ Codeium Command 🌟  *************/
+    row-gap: 10px;
+    column-gap: 30px;
+
+    /******  ec60f1f3-0685-46db-8d5a-82591a44eded  *******/
+    width: 95%;
+
+    background-color: $bg_color;
+    border-radius: 10px;
+    padding: 10px;
+
+    .newsTile {
+      display: flex;
+      width: 47%;
+      max-height: 320px;
+      margin-top: 20px;
+      background-color: $bg_color2;
+      box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2),
+        0 6px 20px 0 rgba(0, 0, 0, 0.19);
+      &:hover {
+        box-shadow: 0 8px 24px 0 rgba(0, 0, 0, 0.2),
+          0 6px 20px 0 rgba(0, 0, 0, 0.19);
+        cursor: pointer;
+        background-color: $bg_colorHover;
+      }
+      border-radius: 10px;
+      padding: 10px;
+      .newsTileLeftPart {
+        width: 30%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding: 20px 20px 20px 10px;
+        img {
+          border-radius: 10px;
+          filter: grayscale(100%);
+          &.hover {
+            filter: grayscale(0);
+          }
+
+          width: 90%;
+        }
+      }
+      .newsTileRightPart {
+        display: flex;
+        flex-direction: column;
+        width: 70%;
+        p {
+          margin: 0px;
+        }
+        .newsTileTitle {
+          font-size: 20px;
+          font-weight: bold;
+          color: $text_basic;
+          &.hover {
+            color: white;
+          }
+        }
+        .newsTileDate {
+          font-size: 12px;
+          font-style: italic;
+          color: $inactive;
+          &.hover {
+            color: white;
+          }
+        }
+        .newsTileContent {
+          margin-top: 20px;
+          font-size: 16px;
+          max-height: 150px;
+          margin-right: 20px;
+          overflow: hidden;
+          text-overflow: ellipsis;
+          display: -webkit-box;
+          color: white;
+          -webkit-line-clamp: 6; /* number of lines to show */
+          -webkit-box-orient: vertical;
+        }
+        .favouriteImgContainer {
+          align-self: flex-end;
+          margin-top: 5px;
+          margin-right: 10px;
+          .favouriteImg {
+            width: 30px;
+            height: 30px;
+          }
+        }
+      }
+    }
+  }
+
+  .loginInputContainer {
+    background-color: $bg_color;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    justify-content: center;
+    width: 400px;
+    height: 130px;
+    border-radius: 20px;
+    .inputContainer {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      justify-content: center;
+
+      margin-right: 60px;
+      .loginInput {
+        width: 200px;
+        height: 30px;
+        padding: 0px 10px;
+        margin: 5px;
+        border-radius: 10px;
+        border: 1px solid #555555;
+      }
+    }
+  }
+  .loginButton {
+    width: 400px;
+    height: 30px;
+    margin-top: 10px;
+    border-radius: 10px;
+    border: 1px solid #555555;
+    background-color: $bg_color2;
+    color: $text_basic;
+    font-size: 18px;
+    &:hover {
+      cursor: pointer;
+      background-color: $bg_color;
+    }
+  }
+}
