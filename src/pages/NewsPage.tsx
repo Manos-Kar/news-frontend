@@ -43,8 +43,6 @@ export default function NewsPage(props: Props) {
           props.setLoggedIn(false);
         }
       } else {
-        console.log(res.data);
-
         setNews(res.data.articles);
         setServerSpace(res.data.disk_space);
         setSortedNews(sortNews(sort, res.data.articles));
@@ -53,7 +51,6 @@ export default function NewsPage(props: Props) {
           setSort(res.data.sort);
         }
         for (let day of res.data.weather.list) {
-          console.log(JSON.stringify(day.weather));
           if (day.weather[0].main === "Clear") {
             setNextSunnyDay(day.dt);
           }

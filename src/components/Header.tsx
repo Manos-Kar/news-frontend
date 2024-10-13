@@ -10,8 +10,6 @@ export default function Header(props: Props) {
   const navigateTo = useNavigate();
 
   function findNextSunnyDay() {
-    console.log(props.nextSunnyDay);
-
     if (props.nextSunnyDay) {
       const today = new Date();
       const difference = Math.ceil(
