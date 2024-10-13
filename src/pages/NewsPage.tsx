@@ -143,6 +143,8 @@ export default function NewsPage(props: Props) {
                   }
                 }}
                 onMouseEnter={() => setHover(index)}
+                onTouchStart={() => setHover(index)}
+                onTouchEnd={() => setHover(-1)}
                 onMouseLeave={() => setHover(-1)}
               >
                 <div className="newsTileLeftPart">

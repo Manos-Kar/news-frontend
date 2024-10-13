@@ -107,12 +107,16 @@ body {
     top: 30px;
     background-color: $bg_color2;
     z-index: 1;
+    @media screen and (max-width: 500px) {
+      flex-direction: column;
+    }
     .logoSubtitleContainer {
       display: flex;
       flex-direction: row;
       align-self: flex-start;
       align-items: center;
       justify-content: center;
+
       .mainLogo {
         padding-left: 10%;
         height: 60px;
@@ -144,10 +148,10 @@ body {
           }
         }
         @media screen and (max-width: 500px) {
-          width: 25vw;
-          font-size: 1.4vh;
+          width: 50vw;
+          font-size: 1.7vh;
           span {
-            font-size: 1vh;
+            font-size: 1.2vh;
           }
         }
       }
@@ -165,6 +169,7 @@ body {
       }
       @media screen and (max-width: 500px) {
         height: 30px;
+        margin-left: 10px;
       }
 
       .sortText {
@@ -219,17 +224,18 @@ body {
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
-    /*************  ✨ Codeium Command 🌟  *************/
     row-gap: 10px;
     column-gap: 30px;
-
-    /******  ec60f1f3-0685-46db-8d5a-82591a44eded  *******/
     width: 95%;
 
     background-color: $bg_color;
     border-radius: 10px;
     padding: 10px;
 
+    @media screen and (max-width: 500px) {
+      width: 95%;
+      padding: 3px;
+    }
     .newsTile {
       display: flex;
       width: 47%;
@@ -252,7 +258,7 @@ body {
         padding: 4px;
       }
       @media screen and (max-width: 500px) {
-        max-height: 130px;
+        min-height: 200px;
       }
       .newsTileLeftPart {
         width: 30%;
@@ -272,6 +278,16 @@ body {
           }
 
           width: 90%;
+          @media screen and (max-width: 500px) {
+            height: 100%;
+            width: 100%;
+            object-fit: cover;
+            border-radius: 0px;
+            border-bottom-left-radius: 10px;
+            border-top-left-radius: 10px;
+
+            object-position: left;
+          }
         }
       }
       .newsTileRightPart {
@@ -285,7 +301,7 @@ body {
         .newsTileTitle {
           font-size: 20px;
           @media screen and (max-width: 500px) {
-            font-size: 1.2vh;
+            font-size: 1.7vh;
           }
           font-weight: bold;
           color: $text_basic;
@@ -301,7 +317,7 @@ body {
             color: white;
           }
           @media screen and (max-width: 500px) {
-            font-size: 0.7vh;
+            font-size: 1vh;
           }
         }
         .newsTileContent {
@@ -317,10 +333,14 @@ body {
           -webkit-box-orient: vertical;
           margin-bottom: 10px;
           @media screen and (max-width: 500px) {
-            font-size: 0.9vh;
+            font-size: 1.5vh;
             margin-top: 3px;
             margin-right: 2px;
-            max-height: 110px;
+            min-height: 140px;
+            max-height: 200px;
+            margin-bottom: 2%;
+            -webkit-line-clamp: 12; /* number of lines to show */
+            -webkit-box-orient: vertical;
           }
         }
         .favouriteImgContainer {
@@ -342,8 +362,8 @@ body {
             @media screen and (max-width: 500px) {
               margin-top: 1px;
               margin-right: 1px;
-              width: 9px;
-              height: 7px;
+              width: 14px;
+              height: 14px;
             }
           }
         }
