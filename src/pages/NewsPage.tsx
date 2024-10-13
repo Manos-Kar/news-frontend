@@ -5,8 +5,9 @@ import noImage from "../resources/images/noImage.jpg";
 import notFavouriteImg from "../resources/images/favourite-2765.svg";
 import favouriteImg from "../resources/images/star-2768.svg";
 import { getTheNews, sortNews } from "../services/commonFunctions";
-import logo from "../resources/images/01-news_logo.png";
 import Header from "../components/Header";
+import Submenu from "../components/Submenu";
+import Tags from "../components/Tags";
 
 type Props = {
   setLoggedIn: (value: boolean) => void;
@@ -17,6 +18,7 @@ export default function NewsPage(props: Props) {
   const [news, setNews] = useState<undefined | News[]>(undefined);
   const [sortedNews, setSortedNews] = useState<undefined | News[]>(undefined);
   const [hover, setHover] = useState(-1);
+  const [availableOrigins, setAvailableOrigins] = useState([]);
   const [loading, setLoading] = useState(true);
   const [sort, setSort] = useState<["date" | "title", "asc" | "desc"]>([
     "date",
@@ -31,6 +33,8 @@ export default function NewsPage(props: Props) {
     free: 0,
     used: 0,
   });
+  const [selectedTags, setSelectedTags] = useState<string[]>([]);
+  const [nextSunnyDay, setNextSunnyDay] = useState(undefined);
 
   useEffect(() => {
     getTheNews(props.type).then((res: any) => {
@@ -44,8 +48,15 @@ export default function NewsPage(props: Props) {
         setNews(res.data.articles);
         setServerSpace(res.data.disk_space);
         setSortedNews(sortNews(sort, res.data.articles));
+        setAvailableOrigins(res.data.available_origins);
         if (JSON.stringify(sort) !== JSON.stringify(res.data.sort)) {
           setSort(res.data.sort);
+        }
+        for (let day of res.data.weather.list) {
+          console.log(JSON.stringify(day.weather));
+          if (day.weather[0].main === "Clear") {
+            setNextSunnyDay(day.dt);
+          }
         }
         setLoading(false);
       }
@@ -56,7 +67,8 @@ export default function NewsPage(props: Props) {
 
   useEffect(() => {
     if (news) {
-      setSortedNews(sortNews(sort, news));
+      const filteredNews = filterByTag(selectedTags, false);
+      setSortedNews(sortNews(sort, filteredNews!));
       save_sort(sort).then((res: any) => {
         if (res.status !== 200) {
           if (res.response.data === "Unauthorized") {
@@ -68,73 +80,48 @@ export default function NewsPage(props: Props) {
     // eslint-disable-next-line
   }, [sort]);
 
+  useEffect(() => {
+    filterByTag(selectedTags, true);
+    // eslint-disable-next-line
+  }, [selectedTags]);
+
+  function filterByTag(tags: string[], shouldUpdate?: boolean) {
+    if (news) {
+      let filteredNews = news.filter((item: News) => {
+        return tags.some((tag) => item.origin.includes(tag));
+      });
+      if (filteredNews.length === 0) {
+        filteredNews = news;
+      }
+
+      if (shouldUpdate) {
+        setSortedNews(sortNews(sort, filteredNews));
+      } else {
+        return filteredNews;
+      }
+    }
+  }
+
   return (
     <>
       <div
         className="basicPageComponent"
         id={`${props.type}-basicPageComponent`}
       >
-        <Header serverSpace={serverSpace} />
-        <div className="submenu">
-          <div className="logoSubtitleContainer">
-            <img src={logo} alt="" className="mainLogo" />
-            <p className="subtitle">
-              {props.type === "favourite_news"
-                ? "Favourite News"
-                : props.type === "today_news"
-                ? "Today's News"
-                : "All News"}{" "}
-              <span>({sortedNews?.length || 0})</span>
-            </p>
-          </div>
-          {!loading && (
-            <div className="sortReloadContainer">
-              <p className="sortText">Sort by:</p>
-              <select
-                className="sortDropdown"
-                onChange={(e: any) => {
-                  setSort(e.target.value.split(","));
-                }}
-                value={`${sort[0]},${sort[1]}`}
-              >
-                <option value={["title", "asc"]}>Title A</option>
-                <option value={["title", "desc"]}>Title Z</option>
-                <option value={["date", "asc"]}>Most Recent</option>
-                <option value={["date", "desc"]}>Oldest</option>
-              </select>
-
-              {/* <button
-                className="reloadButton"
-                onClick={() => {
-                  setLoading(true);
-                  api_get_more_news().then((res: any) => {
-                    if (res.status !== 200) {
-                      if (res.response)
-                        if (
-                          res.response &&
-                          res.response.data === "Unauthorized"
-                        ) {
-                          props.setLoggedIn(false);
-                        }
-                      setLoading(false);
-                    } else {
-                      setTimeout(() => {
-                        setLoading(false);
-                        if (window.location.pathname === "/all_news") {
-                          window.location.reload();
-                        } else {
-                          navigateTo("/all_news");
-                        }
-                      }, 3000);
-                    }
-                  });
-                }}
-              >
-                Get More News
-              </button> */}
-            </div>
-          )}
-        </div>
+        <Header serverSpace={serverSpace} nextSunnyDay={nextSunnyDay} />
+        <Submenu
+          sortedNews={sortedNews}
+          type={props.type}
+          loading={loading}
+          setSort={setSort}
+          sort={sort}
+        />
+        <Tags
+          availableOrigins={availableOrigins}
+          filterByTag={filterByTag}
+          selectedTags={selectedTags}
+          setSelectedTags={setSelectedTags}
+        />
         {loading || sortedNews === undefined ? (
           <div className="loading">Loading...</div>
         ) : (

@@ -21,39 +21,27 @@ body {
   align-items: center;
   border-bottom: 1px solid $inactive;
   z-index: 1;
+  @media screen and (max-width: 500px) {
+    height: 20px;
+  }
   .headerAndSpaceContainer {
     display: flex;
     flex-direction: row;
-    .appHeaderText,
-    .serverSpaceText {
+
+    .appHeaderText {
       font-size: 18px;
       color: $text_basic;
       margin-left: 40px;
       margin-right: 10px;
-      &.serverSpaceText {
-        font-size: 12px;
-        align-self: center;
-        color: white;
-        margin-left: 10px;
-      }
+
       @media screen and (max-width: 900px) {
         font-size: 2.2vh;
         margin-left: 2%;
         text-wrap: nowrap;
-        &.serverSpaceText {
-          font-size: 12px;
-          align-self: center;
-          color: white;
-          margin-left: 10px;
-        }
       }
       @media screen and (max-width: 500px) {
-        font-size: 1.3vh;
+        font-size: 1vh;
         margin-left: 2%;
-        &.serverSpaceText {
-          margin-left: 0px;
-          font-size: 0.7vh;
-        }
       }
     }
   }
@@ -107,13 +95,63 @@ body {
   }
 }
 
+.availableTagsContainer {
+  position: fixed;
+  top: 100px;
+  width: 100%;
+  background-color: $bg_color2;
+  display: flex;
+  flex-direction: row;
+  margin: 10px;
+  z-index: 1;
+  padding: 10px 0;
+  @media screen and (max-width: 500px) {
+    top: 76px;
+  }
+  .tagButton {
+    background-color: $bg_color2;
+    color: white;
+    border-radius: 10px;
+    height: 30px;
+    width: fit-content;
+    padding-left: 8px;
+    padding-right: 8px;
+    font-size: 12px;
+    margin-left: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    border: 1px solid $inactive;
+    &.active {
+      background-color: $text_basic;
+      color: $bg_color2;
+    }
+    @media screen and (max-width: 900px) {
+      font-size: 2vh;
+      width: 90px;
+      height: 20px;
+    }
+    @media screen and (max-width: 500px) {
+      border-radius: 5px;
+      font-size: 0.7vh;
+      width: 90px;
+      height: 12px;
+      padding: 1px;
+    }
+  }
+}
+
 .basicPageComponent {
-  margin-top: 100px;
+  margin-top: 170px;
   width: 100%;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  @media screen and (max-width: 500px) {
+    margin-top: 135px;
+  }
   .submenu {
     display: flex;
     flex-direction: row;
@@ -127,6 +165,7 @@ body {
     z-index: 1;
     @media screen and (max-width: 500px) {
       flex-direction: column;
+      top: 20px;
     }
     .logoSubtitleContainer {
       display: flex;
@@ -440,6 +479,84 @@ body {
     &:hover {
       cursor: pointer;
       background-color: $bg_color;
+    }
+  }
+}
+
+footer {
+  position: fixed;
+  bottom: 0px;
+  left: 0px;
+  width: 100%;
+  height: 30px;
+  background-color: $bg_color2;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-top: 1px solid $inactive;
+  z-index: 1;
+  @media screen and (max-width: 500px) {
+    height: 18px;
+  }
+  .sunImage {
+    height: 30px;
+    margin-left: 10px;
+    margin-top: 6px;
+    @media screen and (max-width: 500px) {
+      margin-top: 4px;
+      height: 18px;
+    }
+  }
+  .serverSpaceText,
+  .nextSunnyDayTextContainer {
+    font-size: 18px;
+    color: $text_basic;
+    margin-left: 40px;
+    margin-right: 10px;
+
+    &.serverSpaceText,
+    &.nextSunnyDayTextContainer {
+      z-index: 2;
+      bottom: 2px;
+      right: 2px;
+      &.nextSunnyDayTextContainer {
+        left: 2px;
+        bottom: 5px;
+        display: flex;
+        flex-direction: row;
+        .nextSunnyDayText {
+          font-size: 14px;
+        }
+      }
+      font-size: 12px;
+      align-self: center;
+      color: white;
+      margin-left: 10px;
+      @media screen and (max-width: 900px) {
+        font-size: 2.2vh;
+        margin-left: 2%;
+        text-wrap: nowrap;
+        &.serverSpaceText,
+        &.nextSunnyDayTextContainer {
+          align-self: center;
+          color: white;
+          margin-left: 10px;
+          .nextSunnyDayText {
+            font-size: 12px;
+          }
+        }
+      }
+      @media screen and (max-width: 500px) {
+        font-size: 1vh;
+        margin-left: 2%;
+        &.serverSpaceText,
+        &.nextSunnyDayTextContainer {
+          margin-left: 0px;
+          .nextSunnyDayText {
+            font-size: 1vh;
+          }
+        }
+      }
     }
   }
 }
