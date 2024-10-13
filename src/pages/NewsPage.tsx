@@ -78,9 +78,7 @@ export default function NewsPage(props: Props) {
                 : props.type === "today_news"
                 ? "Today's News"
                 : "All News"}{" "}
-              <span style={{ fontSize: "16px" }}>
-                ({sortedNews?.length || 0})
-              </span>
+              <span>({sortedNews?.length || 0})</span>
             </p>
           </div>
           {!loading && (

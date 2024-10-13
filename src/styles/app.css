@@ -8,9 +8,15 @@ body {
   color: #d2f769;
 }
 
+.App {
+  width: -moz-fit-content;
+  width: fit-content;
+}
+
 .App-header {
   position: fixed;
   top: 0px;
+  left: 0px;
   width: 100%;
   height: 40px;
   background-color: #232323;
@@ -26,8 +32,25 @@ body {
   margin-left: 40px;
   margin-right: 10px;
 }
+@media screen and (max-width: 900px) {
+  .App-header .appHeaderText {
+    font-size: 2.2vh;
+    margin-left: 2%;
+  }
+}
+@media screen and (max-width: 500px) {
+  .App-header .appHeaderText {
+    font-size: 1.3vh;
+    margin-left: 2%;
+  }
+}
 .App-header .buttonContainer {
   display: flex;
+}
+@media screen and (max-width: 900px) {
+  .App-header .buttonContainer {
+    margin-right: 10%;
+  }
 }
 .App-header .buttonContainer .headerButton {
   background-color: transparent;
@@ -43,13 +66,38 @@ body {
   cursor: pointer;
   border-radius: 10px;
 }
+@media screen and (max-width: 900px) {
+  .App-header .buttonContainer .headerButton {
+    width: -moz-fit-content;
+    width: fit-content;
+    white-space: nowrap;
+    padding-left: 2%;
+    padding-right: 2%;
+    font-size: 2.2vh;
+    margin-left: 2%;
+    margin-right: 2%;
+  }
+}
+@media screen and (max-width: 500px) {
+  .App-header .buttonContainer .headerButton {
+    width: -moz-fit-content;
+    width: fit-content;
+    white-space: nowrap;
+    padding-left: 2%;
+    padding-right: 2%;
+    font-size: 1.2vh;
+    margin-left: 2%;
+    margin-right: 2%;
+  }
+}
 .App-header .buttonContainer .headerButton:hover {
   text-decoration: underline;
   font-weight: bold;
 }
 
 .basicPageComponent {
-  margin-top: 40px;
+  margin-top: 100px;
+  width: 100%;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -61,7 +109,11 @@ body {
   align-self: flex-start;
   align-items: center;
   justify-content: space-between;
-  width: 95%;
+  width: 100%;
+  position: fixed;
+  top: 30px;
+  background-color: #232323;
+  z-index: 1;
 }
 .basicPageComponent .submenu .logoSubtitleContainer {
   display: flex;
@@ -75,6 +127,17 @@ body {
   height: 60px;
   margin: 10px;
 }
+@media screen and (max-width: 900px) {
+  .basicPageComponent .submenu .logoSubtitleContainer .mainLogo {
+    height: 30px;
+  }
+}
+@media screen and (max-width: 500px) {
+  .basicPageComponent .submenu .logoSubtitleContainer .mainLogo {
+    height: 20px;
+    margin: 3px;
+  }
+}
 .basicPageComponent .submenu .logoSubtitleContainer .subtitle {
   width: 300px;
   text-align: left;
@@ -83,13 +146,55 @@ body {
   font-weight: bold;
   margin: 10px;
 }
+.basicPageComponent .submenu .logoSubtitleContainer .subtitle span {
+  font-size: 16px;
+}
+@media screen and (max-width: 900px) {
+  .basicPageComponent .submenu .logoSubtitleContainer .subtitle {
+    width: 25vw;
+    font-size: 2.6vh;
+  }
+  .basicPageComponent .submenu .logoSubtitleContainer .subtitle span {
+    font-size: 2vh;
+  }
+}
+@media screen and (max-width: 500px) {
+  .basicPageComponent .submenu .logoSubtitleContainer .subtitle {
+    width: 25vw;
+    font-size: 1.4vh;
+  }
+  .basicPageComponent .submenu .logoSubtitleContainer .subtitle span {
+    font-size: 1vh;
+  }
+}
 .basicPageComponent .submenu .sortReloadContainer {
   display: flex;
   flex-direction: row;
   align-self: flex-start;
   align-items: center;
   justify-content: center;
+  margin-right: 20px;
   height: 80px;
+}
+@media screen and (max-width: 900px) {
+  .basicPageComponent .submenu .sortReloadContainer {
+    height: 50px;
+  }
+}
+@media screen and (max-width: 500px) {
+  .basicPageComponent .submenu .sortReloadContainer {
+    height: 30px;
+  }
+}
+@media screen and (max-width: 900px) {
+  .basicPageComponent .submenu .sortReloadContainer .sortText {
+    font-size: 2.2vh;
+  }
+}
+@media screen and (max-width: 500px) {
+  .basicPageComponent .submenu .sortReloadContainer .sortText {
+    font-size: 1.2vh;
+  }
 }
 .basicPageComponent .submenu .sortReloadContainer .sortDropdown {
   background-color: #232323;
@@ -100,6 +205,20 @@ body {
   margin-left: 5px;
   cursor: pointer;
 }
+@media screen and (max-width: 900px) {
+  .basicPageComponent .submenu .sortReloadContainer .sortDropdown {
+    font-size: 2.2vh;
+    width: 90px;
+    height: 20px;
+  }
+}
+@media screen and (max-width: 500px) {
+  .basicPageComponent .submenu .sortReloadContainer .sortDropdown {
+    font-size: 1.2vh;
+    width: 80px;
+    height: 16px;
+  }
+}
 .basicPageComponent .submenu .sortReloadContainer .reloadButton {
   background-color: #232323;
   color: #d2f769;
@@ -108,6 +227,20 @@ body {
   width: 140px;
   margin-left: 10px;
   cursor: pointer;
+}
+@media screen and (max-width: 900px) {
+  .basicPageComponent .submenu .sortReloadContainer .reloadButton {
+    font-size: 2vh;
+    width: 90px;
+    height: 20px;
+  }
+}
+@media screen and (max-width: 500px) {
+  .basicPageComponent .submenu .sortReloadContainer .reloadButton {
+    font-size: 1vh;
+    width: 80px;
+    height: 16px;
+  }
 }
 .basicPageComponent .tilesContainer {
   display: flex;
@@ -138,12 +271,29 @@ body {
   cursor: pointer;
   background-color: #484848;
 }
+@media screen and (max-width: 1227px) {
+  .basicPageComponent .tilesContainer .newsTile {
+    width: 95%;
+    padding: 4px;
+  }
+}
+@media screen and (max-width: 500px) {
+  .basicPageComponent .tilesContainer .newsTile {
+    max-height: 130px;
+  }
+}
 .basicPageComponent .tilesContainer .newsTile .newsTileLeftPart {
   width: 30%;
   display: flex;
   justify-content: center;
   align-items: center;
   padding: 20px 20px 20px 10px;
+}
+@media screen and (max-width: 500px) {
+  .basicPageComponent .tilesContainer .newsTile .newsTileLeftPart {
+    width: 40%;
+    padding: 3px;
+  }
 }
 .basicPageComponent .tilesContainer .newsTile .newsTileLeftPart img {
   border-radius: 10px;
@@ -154,6 +304,7 @@ body {
   filter: grayscale(0);
 }
 .basicPageComponent .tilesContainer .newsTile .newsTileRightPart {
+  position: relative;
   display: flex;
   flex-direction: column;
   width: 70%;
@@ -166,6 +317,11 @@ body {
   font-weight: bold;
   color: #d2f769;
 }
+@media screen and (max-width: 500px) {
+  .basicPageComponent .tilesContainer .newsTile .newsTileRightPart .newsTileTitle {
+    font-size: 1.2vh;
+  }
+}
 .basicPageComponent .tilesContainer .newsTile .newsTileRightPart .newsTileTitle.hover {
   color: white;
 }
@@ -176,6 +332,11 @@ body {
 }
 .basicPageComponent .tilesContainer .newsTile .newsTileRightPart .newsTileDate.hover {
   color: white;
+}
+@media screen and (max-width: 500px) {
+  .basicPageComponent .tilesContainer .newsTile .newsTileRightPart .newsTileDate {
+    font-size: 0.7vh;
+  }
 }
 .basicPageComponent .tilesContainer .newsTile .newsTileRightPart .newsTileContent {
   margin-top: 20px;
@@ -188,15 +349,45 @@ body {
   color: white;
   -webkit-line-clamp: 6; /* number of lines to show */
   -webkit-box-orient: vertical;
+  margin-bottom: 10px;
+}
+@media screen and (max-width: 500px) {
+  .basicPageComponent .tilesContainer .newsTile .newsTileRightPart .newsTileContent {
+    font-size: 0.9vh;
+    margin-top: 3px;
+    margin-right: 2px;
+    max-height: 110px;
+  }
 }
 .basicPageComponent .tilesContainer .newsTile .newsTileRightPart .favouriteImgContainer {
+  position: absolute;
   align-self: flex-end;
-  margin-top: 5px;
-  margin-right: 10px;
+  bottom: 5px;
+  right: 10px;
+}
+@media screen and (max-width: 500px) {
+  .basicPageComponent .tilesContainer .newsTile .newsTileRightPart .favouriteImgContainer {
+    bottom: 1px;
+    right: 2px;
+  }
 }
 .basicPageComponent .tilesContainer .newsTile .newsTileRightPart .favouriteImgContainer .favouriteImg {
   width: 30px;
   height: 30px;
+}
+@media screen and (max-width: 900px) {
+  .basicPageComponent .tilesContainer .newsTile .newsTileRightPart .favouriteImgContainer .favouriteImg {
+    width: 20px;
+    height: 20px;
+  }
+}
+@media screen and (max-width: 500px) {
+  .basicPageComponent .tilesContainer .newsTile .newsTileRightPart .favouriteImgContainer .favouriteImg {
+    margin-top: 1px;
+    margin-right: 1px;
+    width: 9px;
+    height: 7px;
+  }
 }
 .basicPageComponent .loginInputContainer {
   background-color: #2b2b2b;
