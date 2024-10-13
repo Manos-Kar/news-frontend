@@ -7,11 +7,6 @@ body {
   color: #d2f769;
 }
 
-.App {
-  width: -moz-fit-content;
-  width: fit-content;
-}
-
 .App-header {
   position: fixed;
   top: 0px;
@@ -25,22 +20,49 @@ body {
   border-bottom: 1px solid #555555;
   z-index: 1;
 }
-.App-header .appHeaderText {
+.App-header .headerAndSpaceContainer {
+  display: flex;
+  flex-direction: row;
+}
+.App-header .headerAndSpaceContainer .appHeaderText,
+.App-header .headerAndSpaceContainer .serverSpaceText {
   font-size: 18px;
   color: #d2f769;
   margin-left: 40px;
   margin-right: 10px;
 }
+.App-header .headerAndSpaceContainer .appHeaderText.serverSpaceText,
+.App-header .headerAndSpaceContainer .serverSpaceText.serverSpaceText {
+  font-size: 12px;
+  align-self: center;
+  color: white;
+  margin-left: 10px;
+}
 @media screen and (max-width: 900px) {
-  .App-header .appHeaderText {
+  .App-header .headerAndSpaceContainer .appHeaderText,
+  .App-header .headerAndSpaceContainer .serverSpaceText {
     font-size: 2.2vh;
     margin-left: 2%;
+    text-wrap: nowrap;
+  }
+  .App-header .headerAndSpaceContainer .appHeaderText.serverSpaceText,
+  .App-header .headerAndSpaceContainer .serverSpaceText.serverSpaceText {
+    font-size: 12px;
+    align-self: center;
+    color: white;
+    margin-left: 10px;
   }
 }
 @media screen and (max-width: 500px) {
-  .App-header .appHeaderText {
+  .App-header .headerAndSpaceContainer .appHeaderText,
+  .App-header .headerAndSpaceContainer .serverSpaceText {
     font-size: 1.3vh;
     margin-left: 2%;
+  }
+  .App-header .headerAndSpaceContainer .appHeaderText.serverSpaceText,
+  .App-header .headerAndSpaceContainer .serverSpaceText.serverSpaceText {
+    margin-left: 0px;
+    font-size: 0.7vh;
   }
 }
 .App-header .buttonContainer {
@@ -140,6 +162,8 @@ body {
   .basicPageComponent .submenu .logoSubtitleContainer .mainLogo {
     height: 20px;
     margin: 3px;
+    padding-left: 0;
+    margin-left: 8px;
   }
 }
 .basicPageComponent .submenu .logoSubtitleContainer .subtitle {
@@ -247,6 +271,10 @@ body {
     height: 16px;
   }
 }
+.basicPageComponent .loading {
+  width: 100%;
+  text-align: center;
+}
 .basicPageComponent .tilesContainer {
   display: flex;
   flex-wrap: wrap;
@@ -347,16 +375,25 @@ body {
 .basicPageComponent .tilesContainer .newsTile .newsTileRightPart .newsTileTitle.hover {
   color: white;
 }
-.basicPageComponent .tilesContainer .newsTile .newsTileRightPart .newsTileDate {
+.basicPageComponent .tilesContainer .newsTile .newsTileRightPart .dateAndOriginContainer {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+}
+.basicPageComponent .tilesContainer .newsTile .newsTileRightPart .dateAndOriginContainer .newsTileDate,
+.basicPageComponent .tilesContainer .newsTile .newsTileRightPart .dateAndOriginContainer .newsTileOrigin {
   font-size: 12px;
   font-style: italic;
   color: #555555;
 }
-.basicPageComponent .tilesContainer .newsTile .newsTileRightPart .newsTileDate.hover {
+.basicPageComponent .tilesContainer .newsTile .newsTileRightPart .dateAndOriginContainer .newsTileDate.hover,
+.basicPageComponent .tilesContainer .newsTile .newsTileRightPart .dateAndOriginContainer .newsTileOrigin.hover {
   color: white;
 }
 @media screen and (max-width: 500px) {
-  .basicPageComponent .tilesContainer .newsTile .newsTileRightPart .newsTileDate {
+  .basicPageComponent .tilesContainer .newsTile .newsTileRightPart .dateAndOriginContainer .newsTileDate,
+  .basicPageComponent .tilesContainer .newsTile .newsTileRightPart .dateAndOriginContainer .newsTileOrigin {
     font-size: 1vh;
   }
 }

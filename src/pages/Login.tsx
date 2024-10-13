@@ -20,20 +20,14 @@ export default function Login(props: Props) {
   }, [username, password]);
 
   const handleKeyDown = (event: KeyboardEvent) => {
-    console.log(password, username);
-
     if (event.key === "Enter") {
       handleLogin();
     }
   };
 
   function handleLogin() {
-    console.log(username, password);
-
     if (username && password) {
       login(username, password).then((res: any) => {
-        console.log(res.status);
-
         if (res.status !== 200) {
           alert(res.error);
         } else {

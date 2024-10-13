@@ -9,10 +9,6 @@ body {
   color: $text_basic;
 }
 
-.App {
-  width: fit-content;
-}
-
 .App-header {
   position: fixed;
   top: 0px;
@@ -25,18 +21,40 @@ body {
   align-items: center;
   border-bottom: 1px solid $inactive;
   z-index: 1;
-  .appHeaderText {
-    font-size: 18px;
-    color: $text_basic;
-    margin-left: 40px;
-    margin-right: 10px;
-    @media screen and (max-width: 900px) {
-      font-size: 2.2vh;
-      margin-left: 2%;
-    }
-    @media screen and (max-width: 500px) {
-      font-size: 1.3vh;
-      margin-left: 2%;
+  .headerAndSpaceContainer {
+    display: flex;
+    flex-direction: row;
+    .appHeaderText,
+    .serverSpaceText {
+      font-size: 18px;
+      color: $text_basic;
+      margin-left: 40px;
+      margin-right: 10px;
+      &.serverSpaceText {
+        font-size: 12px;
+        align-self: center;
+        color: white;
+        margin-left: 10px;
+      }
+      @media screen and (max-width: 900px) {
+        font-size: 2.2vh;
+        margin-left: 2%;
+        text-wrap: nowrap;
+        &.serverSpaceText {
+          font-size: 12px;
+          align-self: center;
+          color: white;
+          margin-left: 10px;
+        }
+      }
+      @media screen and (max-width: 500px) {
+        font-size: 1.3vh;
+        margin-left: 2%;
+        &.serverSpaceText {
+          margin-left: 0px;
+          font-size: 0.7vh;
+        }
+      }
     }
   }
   .buttonContainer {
@@ -127,6 +145,8 @@ body {
         @media screen and (max-width: 500px) {
           height: 20px;
           margin: 3px;
+          padding-left: 0;
+          margin-left: 8px;
         }
       }
       .subtitle {
@@ -220,6 +240,10 @@ body {
       }
     }
   }
+  .loading {
+    width: 100%;
+    text-align: center;
+  }
   .tilesContainer {
     display: flex;
     flex-wrap: wrap;
@@ -309,15 +333,22 @@ body {
             color: white;
           }
         }
-        .newsTileDate {
-          font-size: 12px;
-          font-style: italic;
-          color: $inactive;
-          &.hover {
-            color: white;
-          }
-          @media screen and (max-width: 500px) {
-            font-size: 1vh;
+        .dateAndOriginContainer {
+          display: flex;
+          flex-direction: row;
+          align-items: center;
+          justify-content: space-between;
+          .newsTileDate,
+          .newsTileOrigin {
+            font-size: 12px;
+            font-style: italic;
+            color: $inactive;
+            &.hover {
+              color: white;
+            }
+            @media screen and (max-width: 500px) {
+              font-size: 1vh;
+            }
           }
         }
         .newsTileContent {

@@ -9,7 +9,6 @@ export default function App() {
   const [loggedIn, setLoggedIn] = useState(false);
   const isLoggedIn = () => {
     const credentials = Cookies.get("credentials"); // Get the credentials cookie
-    console.log(credentials);
 
     return !!credentials; // Return true if the cookie exists, false otherwise
   };

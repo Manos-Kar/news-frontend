@@ -1,9 +1,5 @@
 import { useEffect, useState } from "react";
-import {
-  api_get_more_news,
-  save_favourite_news,
-  save_sort,
-} from "../services/requests";
+import { save_favourite_news, save_sort } from "../services/requests";
 import { News } from "../models/news";
 import noImage from "../resources/images/noImage.jpg";
 import notFavouriteImg from "../resources/images/favourite-2765.svg";
@@ -11,7 +7,6 @@ import favouriteImg from "../resources/images/star-2768.svg";
 import { getTheNews, sortNews } from "../services/commonFunctions";
 import logo from "../resources/images/01-news_logo.png";
 import Header from "../components/Header";
-import { useNavigate } from "react-router";
 
 type Props = {
   setLoggedIn: (value: boolean) => void;
@@ -19,7 +14,6 @@ type Props = {
 };
 
 export default function NewsPage(props: Props) {
-  const navigateTo = useNavigate();
   const [news, setNews] = useState<undefined | News[]>(undefined);
   const [sortedNews, setSortedNews] = useState<undefined | News[]>(undefined);
   const [hover, setHover] = useState(-1);
@@ -28,6 +22,15 @@ export default function NewsPage(props: Props) {
     "date",
     "asc",
   ]);
+  const [serverSpace, setServerSpace] = useState<{
+    total: number;
+    free: number;
+    used: number;
+  }>({
+    total: 0,
+    free: 0,
+    used: 0,
+  });
 
   useEffect(() => {
     getTheNews(props.type).then((res: any) => {
@@ -36,9 +39,14 @@ export default function NewsPage(props: Props) {
           props.setLoggedIn(false);
         }
       } else {
+        console.log(res.data);
+
         setNews(res.data.articles);
+        setServerSpace(res.data.disk_space);
         setSortedNews(sortNews(sort, res.data.articles));
-        setSort(res.data.sort);
+        if (JSON.stringify(sort) !== JSON.stringify(res.data.sort)) {
+          setSort(res.data.sort);
+        }
         setLoading(false);
       }
     });
@@ -54,8 +62,6 @@ export default function NewsPage(props: Props) {
           if (res.response.data === "Unauthorized") {
             props.setLoggedIn(false);
           }
-        } else {
-          console.log(res.response);
         }
       });
     }
@@ -68,7 +74,7 @@ export default function NewsPage(props: Props) {
         className="basicPageComponent"
         id={`${props.type}-basicPageComponent`}
       >
-        <Header />
+        <Header serverSpace={serverSpace} />
         <div className="submenu">
           <div className="logoSubtitleContainer">
             <img src={logo} alt="" className="mainLogo" />
@@ -97,7 +103,7 @@ export default function NewsPage(props: Props) {
                 <option value={["date", "desc"]}>Oldest</option>
               </select>
 
-              <button
+              {/* <button
                 className="reloadButton"
                 onClick={() => {
                   setLoading(true);
@@ -110,23 +116,27 @@ export default function NewsPage(props: Props) {
                         ) {
                           props.setLoggedIn(false);
                         }
-                    }
-                    setLoading(false);
-                    if (window.location.pathname === "/all_news") {
-                      window.location.reload();
+                      setLoading(false);
                     } else {
-                      navigateTo("/all_news");
+                      setTimeout(() => {
+                        setLoading(false);
+                        if (window.location.pathname === "/all_news") {
+                          window.location.reload();
+                        } else {
+                          navigateTo("/all_news");
+                        }
+                      }, 3000);
                     }
                   });
                 }}
               >
                 Get More News
-              </button>
+              </button> */}
             </div>
           )}
         </div>
         {loading || sortedNews === undefined ? (
-          <div>Loading...</div>
+          <div className="loading">Loading...</div>
         ) : (
           <div className="tilesContainer">
             {sortedNews.map((item: News, index: number) => (
@@ -164,17 +174,28 @@ export default function NewsPage(props: Props) {
                   >
                     {item.title}
                   </p>
-                  <p
-                    className={`newsTileDate ${hover === index ? "hover" : ""}`}
-                  >
-                    {new Intl.DateTimeFormat("en-GB", {
-                      year: "numeric",
-                      month: "2-digit",
-                      day: "2-digit",
-                      hour: "2-digit",
-                      minute: "2-digit",
-                    }).format(new Date(item.date))}
-                  </p>
+                  <div className="dateAndOriginContainer">
+                    <p
+                      className={`newsTileDate ${
+                        hover === index ? "hover" : ""
+                      }`}
+                    >
+                      {new Intl.DateTimeFormat("en-GB", {
+                        year: "numeric",
+                        month: "2-digit",
+                        day: "2-digit",
+                        hour: "2-digit",
+                        minute: "2-digit",
+                      }).format(new Date(item.date))}
+                    </p>
+                    <p
+                      className={`newsTileOrigin ${
+                        hover === index ? "hover" : ""
+                      }`}
+                    >
+                      {item.origin}
+                    </p>
+                  </div>
                   <p className="newsTileContent">{item.content}</p>
                   <div
                     className="favouriteImgContainer"

@@ -8,8 +8,6 @@ import {
 export const isDevEnv = () => process.env.REACT_APP_ENV === "dev";
 
 export const getImageLink = (imageUrl: string) => {
-  console.log(imageUrl);
-
   return isDevEnv()
     ? `http://localhost:8000${imageUrl}`
     : `https://www.manoskarystinos.com${imageUrl}`;
@@ -26,8 +24,6 @@ export function sortNews(
     const ascending = order === "asc" ? 1 : -1;
 
     if (sortBy === "date") {
-      console.log("mpika");
-
       return (
         (new Date(b.date).getTime() - new Date(a.date).getTime()) * ascending
       );
