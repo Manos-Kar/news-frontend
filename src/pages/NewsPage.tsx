@@ -99,6 +99,38 @@ export default function NewsPage(props: Props) {
     }
   }
 
+  const isSafariOnIOS = () => {
+    const userAgent = navigator.userAgent;
+    console.log(userAgent);
+
+    // Check for actual iOS device
+    const isIOS = /iPhone|iPad/.test(userAgent) && /Mobile/.test(userAgent);
+    console.log(isIOS);
+
+    // Check for Safari but exclude Chrome and other browsers
+    const isSafari = /Safari/.test(userAgent) && !/Chrome/.test(userAgent);
+    console.log(isSafari);
+
+    // Only return true if both conditions are met
+    return isIOS && isSafari;
+  };
+
+  const openInChrome = (url: string) => {
+    console.log(isSafariOnIOS());
+
+    if (isSafariOnIOS()) {
+      // Ensure the URL starts with "http://" or "https://"
+      const formattedUrl =
+        url.startsWith("http://") || url.startsWith("https://")
+          ? url.replace("https://", "")
+          : url;
+      const chromeUrl = `googlechrome://${formattedUrl}`;
+      window.open(chromeUrl, "_blank");
+    } else {
+      window.open(url, "_blank"); // Open normally for other platforms
+    }
+  };
+
   return (
     <>
       <div
@@ -133,7 +165,7 @@ export default function NewsPage(props: Props) {
                     e.target.className &&
                     !e.target.className.includes("favouriteImg")
                   ) {
-                    window.open(item.link, "_blank");
+                    openInChrome(item.link);
                   }
                 }}
                 onMouseEnter={() => setHover(index)}

@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import Cookies from "js-cookie";
 import Login from "./pages/Login";
 import { HashRouter as Router, Route, Routes } from "react-router-dom";
+import PaoPage from "./pages/PaoPage";
 
 export default function App() {
   const [loggedIn, setLoggedIn] = useState(false);
@@ -27,6 +28,14 @@ export default function App() {
       {loggedIn ? (
         <Router>
           <Routes>
+            <Route
+              path="/pao"
+              element={
+                <>
+                  <PaoPage />
+                </>
+              }
+            />
             <Route
               path="/all_news"
               element={

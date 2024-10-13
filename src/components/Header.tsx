@@ -1,5 +1,7 @@
 import { useNavigate } from "react-router-dom";
 import sunImg from "../resources/images/02-sun.png";
+import hamburgerImg from "../resources/images/03-hamburger.svg";
+import { useEffect, useState } from "react";
 
 type Props = {
   serverSpace: { total: number; free: number; used: number };
@@ -8,6 +10,22 @@ type Props = {
 
 export default function Header(props: Props) {
   const navigateTo = useNavigate();
+  const [dropdown, setDropdown] = useState(false);
+
+  useEffect(() => {
+    document.addEventListener("click", closeDropdown);
+
+    return () => {
+      document.removeEventListener("click", closeDropdown);
+    };
+    // eslint-disable-next-line
+  }, [dropdown]);
+
+  function closeDropdown(e: any) {
+    if (dropdown && !e.target.classList.contains("dropdown")) {
+      setDropdown(false);
+    }
+  }
 
   function findNextSunnyDay() {
     if (props.nextSunnyDay) {
@@ -35,23 +53,58 @@ export default function Header(props: Props) {
         <div className="headerAndSpaceContainer">
           <p className="appHeaderText">Manos News</p>
         </div>
-
-        <div className="buttonContainer">
-          <button
-            onClick={() => navigateTo("/all_news")}
-            className="headerButton"
+        <div className="dropDownContainer">
+          <div
+            className={`dropdownHeaderMenu dropdown ${dropdown ? "open" : ""}`}
           >
-            All news
-          </button>
-          <button onClick={() => navigateTo("/")} className="headerButton">
-            Today's news
-          </button>
-          <button
-            onClick={() => navigateTo("/favourite_news")}
-            className="headerButton"
-          >
-            Favourite news
-          </button>
+            <img
+              src={hamburgerImg}
+              alt=""
+              className="hamburgerImg dropdown"
+              style={dropdown ? { display: "none" } : undefined}
+              onClick={() => setDropdown(true)}
+            />
+            {dropdown && (
+              <div className="buttonContainer dropdown">
+                <div
+                  onClick={() => {
+                    setDropdown(false);
+                    navigateTo("/all_news");
+                  }}
+                  className="headerButton dropdown"
+                >
+                  All news
+                </div>
+                <div
+                  onClick={() => {
+                    setDropdown(false);
+                    navigateTo("/");
+                  }}
+                  className="headerButton dropdown"
+                >
+                  Today's news
+                </div>
+                <div
+                  onClick={() => {
+                    setDropdown(false);
+                    navigateTo("/favourite_news");
+                  }}
+                  className="headerButton dropdown"
+                >
+                  Favourite news
+                </div>
+                <div
+                  onClick={() => {
+                    setDropdown(false);
+                    navigateTo("/pao");
+                  }}
+                  className="headerButton dropdown"
+                >
+                  Pao Schedule
+                </div>
+              </div>
+            )}
+          </div>
         </div>
       </header>
       <footer>
