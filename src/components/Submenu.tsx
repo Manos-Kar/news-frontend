@@ -1,5 +1,4 @@
 import { News } from "../models/news";
-import logo from "../resources/images/01-news_logo.png";
 
 type Props = {
   sortedNews: News[] | undefined;
@@ -14,7 +13,6 @@ export default function Submenu(props: Props) {
     <>
       <div className="submenu">
         <div className="logoSubtitleContainer">
-          <img src={logo} alt="" className="mainLogo" />
           <p className="subtitle">
             {props.type === "favourite_news"
               ? "Favourite News"

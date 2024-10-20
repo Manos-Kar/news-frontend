@@ -51,8 +51,9 @@ export default function NewsPage(props: Props) {
           setSort(res.data.sort);
         }
         for (let day of res.data.weather.list) {
-          if (day.weather[0].main === "Clear") {
+          if (day.clouds.all < 60) {
             setNextSunnyDay(day.dt);
+            break;
           }
         }
         setLoading(false);
@@ -122,7 +123,7 @@ export default function NewsPage(props: Props) {
       // Ensure the URL starts with "http://" or "https://"
       const formattedUrl =
         url.startsWith("http://") || url.startsWith("https://")
-          ? url.replace("https://", "")
+          ? url.replace("http://", "").replace("https://", "")
           : url;
       const chromeUrl = `googlechrome://${formattedUrl}`;
       window.open(chromeUrl, "_blank");
