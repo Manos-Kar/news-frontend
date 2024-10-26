@@ -4,6 +4,10 @@ import hamburgerImg from "../resources/images/03-hamburger.svg";
 import { useEffect, useState } from "react";
 import ElfsightWidget from "./WeatherWidget";
 import { format, differenceInDays } from "date-fns";
+import { PaoGame } from "../models/paoGame";
+import { api_get_next_game } from "../services/requests";
+import euroleagueImg from "../resources/images/euroleague.png";
+import basketleagueImg from "../resources/images/gbl.jpg";
 
 type Props = {
   serverSpace: { total: number; free: number; used: number };
@@ -14,6 +18,23 @@ export default function Header(props: Props) {
   const navigateTo = useNavigate();
   const [dropdown, setDropdown] = useState(false);
   const [widgetOn, setWidgetOn] = useState(false);
+  const [nextGame, setNextGame] = useState<PaoGame | undefined>(undefined);
+  const [competitionImg, setCompetitionImg] = useState<string>("");
+
+  useEffect(() => {
+    api_get_next_game().then((res: any) => {
+      if (res.data) {
+        console.log(res.data);
+
+        setNextGame(res.data);
+        if (res.data.competition === "EUROLEAGUE") {
+          setCompetitionImg(euroleagueImg);
+        } else if (res.data.competition === "GREEK BASKET LEAGUE") {
+          setCompetitionImg(basketleagueImg);
+        }
+      }
+    });
+  }, []);
 
   useEffect(() => {
     // Select the first <a> element inside the widgetContainer
@@ -70,9 +91,53 @@ export default function Header(props: Props) {
   return (
     <>
       <header className="App-header">
-        <div className="headerAndSpaceContainer">
-          <p className="appHeaderText">Manos News</p>
-        </div>
+        {nextGame && (
+          <div className="paoGameContainer">
+            <div className="titleContainer">
+              <div className="competition">
+                {competitionImg ? (
+                  <img
+                    src={competitionImg}
+                    alt="competition"
+                    className="competitionImg"
+                  />
+                ) : (
+                  nextGame.competition
+                )}
+              </div>
+              <div className="gameContainer">
+                <div className="gameComponent">
+                  <div className="team">
+                    <img
+                      src={nextGame.home_team_image_url}
+                      alt="homeTeam"
+                      className="teamImg"
+                    />
+                    <p className="teamName">{nextGame.home_team}</p>
+                  </div>
+                  <div className="vs">vs</div>
+                  <div className="team">
+                    <img
+                      src={nextGame.away_team_image_url}
+                      alt="awayTeam"
+                      className="teamImg"
+                    />
+                    <p className="teamName">{nextGame.away_team}</p>
+                  </div>
+                </div>
+              </div>
+              <p className="time">
+                {new Intl.DateTimeFormat("default", {
+                  day: "2-digit",
+                  month: "2-digit",
+                  year: "numeric",
+                  hour: "2-digit",
+                  minute: "2-digit",
+                }).format(new Date(nextGame.time))}
+              </p>
+            </div>
+          </div>
+        )}
         <div className="dropDownContainer">
           <div
             className={`dropdownHeaderMenu dropdown ${dropdown ? "open" : ""}`}

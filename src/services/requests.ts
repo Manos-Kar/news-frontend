@@ -31,6 +31,26 @@ export const api_get_today_news = async () => {
   }
 };
 
+//GET @api_get_next_game
+export const api_get_next_game = async () => {
+  const headers = getHeaders();
+  try {
+    return await get(getUrl("GET_NEXT_GAME"), headers);
+  } catch (error) {
+    return error;
+  }
+};
+
+//GET @api_get_all_games
+export const api_get_all_games = async () => {
+  const headers = getHeaders();
+  try {
+    return await get(getUrl("GET_ALL_GAMES"), headers);
+  } catch (error) {
+    return error;
+  }
+};
+
 //GET @api_get_all_news
 export const api_get_all_news = async () => {
   const headers = getHeaders();

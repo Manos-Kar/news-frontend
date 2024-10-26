@@ -1,5 +1,4 @@
 import { News } from "../models/news";
-
 type Props = {
   sortedNews: News[] | undefined;
   type: "today_news" | "all_news" | "favourite_news";
@@ -22,6 +21,7 @@ export default function Submenu(props: Props) {
             <span>({props.sortedNews?.length || 0})</span>
           </p>
         </div>
+
         {!props.loading && (
           <div className="sortReloadContainer">
             <p className="sortText">Sort by:</p>
@@ -37,36 +37,6 @@ export default function Submenu(props: Props) {
               <option value={["date", "asc"]}>Most Recent</option>
               <option value={["date", "desc"]}>Oldest</option>
             </select>
-
-            {/* <button
-                className="reloadButton"
-                onClick={() => {
-                  setLoading(true);
-                  api_get_more_news().then((res: any) => {
-                    if (res.status !== 200) {
-                      if (res.response)
-                        if (
-                          res.response &&
-                          res.response.data === "Unauthorized"
-                        ) {
-                          props.setLoggedIn(false);
-                        }
-                      setLoading(false);
-                    } else {
-                      setTimeout(() => {
-                        setLoading(false);
-                        if (window.location.pathname === "/all_news") {
-                          window.location.reload();
-                        } else {
-                          navigateTo("/all_news");
-                        }
-                      }, 3000);
-                    }
-                  });
-                }}
-              >
-                Get More News
-              </button> */}
           </div>
         )}
       </div>

@@ -695,4 +695,75 @@ footer .nextSunnyDayTextContainer.nextSunnyDayTextContainer.nextSunnyDayTextCont
     font-size: 1vh;
     margin: 0;
   }
+}
+
+.paoGameContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  border-radius: 20px;
+  width: 500px;
+  height: 30px;
+  margin-top: 15px;
+  z-index: 2;
+  color: white;
+  padding: 3px 15px;
+}
+@media screen and (max-width: 500px) {
+  .paoGameContainer {
+    zoom: 0.4;
+  }
+}
+.paoGameContainer .titleContainer {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  height: 25px;
+  border-bottom: 1px solid white;
+}
+.paoGameContainer .titleContainer .title {
+  margin-left: 8px;
+}
+.paoGameContainer .titleContainer .competition .competitionImg {
+  height: 20px;
+}
+.paoGameContainer .gameContainer {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: center;
+}
+.paoGameContainer .gameContainer .gameComponent {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  margin-left: 5px;
+}
+.paoGameContainer .gameContainer .gameComponent .team {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: center;
+  height: 22px;
+}
+.paoGameContainer .gameContainer .gameComponent .team .teamName {
+  max-width: 130px;
+  white-space: nowrap;
+  overflow: hidden;
+}
+.paoGameContainer .gameContainer .gameComponent .team .teamImg {
+  width: 20px;
+  height: 20px;
+  margin-right: 3px;
+}
+.paoGameContainer .gameContainer .gameComponent .vs {
+  margin-left: 10px;
+  margin-right: 10px;
+  font-size: 16px;
+}
+.paoGameContainer .time {
+  font-weight: bold;
 }/*# sourceMappingURL=app.css.map */
