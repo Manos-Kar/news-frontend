@@ -128,6 +128,7 @@ export default function Header(props: Props) {
               </div>
               <p className="time">
                 {new Intl.DateTimeFormat("default", {
+                  weekday: "short",
                   day: "2-digit",
                   month: "2-digit",
                   year: "numeric",

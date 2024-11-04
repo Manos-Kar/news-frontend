@@ -139,18 +139,18 @@ export default function NewsPage(props: Props) {
         id={`${props.type}-basicPageComponent`}
       >
         <Header serverSpace={serverSpace} nextSunnyDay={nextSunnyDay} />
-        <Tags
-          availableOrigins={availableOrigins}
-          filterByTag={filterByTag}
-          selectedTags={selectedTags}
-          setSelectedTags={setSelectedTags}
-        />
         <Submenu
           sortedNews={sortedNews}
           type={props.type}
           loading={loading}
           setSort={setSort}
           sort={sort}
+        />
+        <Tags
+          availableOrigins={availableOrigins}
+          filterByTag={filterByTag}
+          selectedTags={selectedTags}
+          setSelectedTags={setSelectedTags}
         />
         {loading || sortedNews === undefined ? (
           <div className="loading">Loading...</div>

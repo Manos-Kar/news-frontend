@@ -420,7 +420,6 @@ body {
           text-overflow: ellipsis;
           display: -webkit-box;
           color: white;
-          -webkit-line-clamp: 6; /* number of lines to show */
           -webkit-box-orient: vertical;
           margin-bottom: 10px;
           @media screen and (max-width: 500px) {
@@ -611,14 +610,19 @@ footer {
 }
 
 .paoGameContainer {
-  @media screen and (max-width: 500px) {
+  @media screen and (max-width: 900px) {
     zoom: 0.4;
+    width: 80%;
+    .teamName {
+      max-width: 180px !important;
+    }
+    margin-left: 10px;
   }
   display: flex;
   flex-direction: column;
   align-items: flex-start;
   border-radius: 20px;
-  width: 500px;
+  width: 700px;
   height: 30px;
   margin-top: 15px;
 

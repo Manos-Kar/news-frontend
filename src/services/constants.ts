@@ -5,6 +5,7 @@ const GET_NEXT_GAME = "news/api/get_next_game/";
 const GET_ALL_GAMES = "news/api/get_all_games/";
 const GET_FAVOURITE_NEWS = "news/api/get_favourite_news/";
 const SAVE_FAVOURITE_NEWS = "news/api/save_favourite_news/";
+const GET_CSRF_TOKEN = "news/api/get_csrf_token/";
 const SAVE_SORT = "news/api/save_sort/";
 const LOGIN = "news/login/";
 
@@ -17,6 +18,7 @@ export type UrlOption =
   | "GET_MORE_NEWS"
   | "GET_NEXT_GAME"
   | "GET_ALL_GAMES"
+  | "GET_CSRF_TOKEN"
   | "LOGIN";
 
 export const getUrl = (option: UrlOption, ids?: string[]) => {
@@ -49,6 +51,10 @@ export const getUrl = (option: UrlOption, ids?: string[]) => {
 
     case "SAVE_SORT":
       resUrl += SAVE_SORT;
+      break;
+
+    case "GET_CSRF_TOKEN":
+      resUrl += GET_CSRF_TOKEN;
       break;
 
     case "GET_MORE_NEWS":

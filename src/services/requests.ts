@@ -118,3 +118,12 @@ export const login = async (username: string, password: string) => {
     return error;
   }
 };
+
+//GET @get_csrf_token
+export const fetchCsrfToken = async () => {
+  try {
+    return await get(getUrl("GET_CSRF_TOKEN"), {});
+  } catch (error) {
+    return error;
+  }
+};

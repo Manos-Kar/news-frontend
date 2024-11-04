@@ -6,6 +6,7 @@ import Login from "./pages/Login";
 import { HashRouter as Router, Route, Routes } from "react-router-dom";
 import PaoPage from "./pages/PaoPage";
 import refreshImg from "./resources/images/refresh.png";
+import { fetchCsrfToken } from "./services/requests";
 
 export default function App() {
   const [loggedIn, setLoggedIn] = useState(false);
@@ -15,6 +16,17 @@ export default function App() {
 
     return !!credentials; // Return true if the cookie exists, false otherwise
   };
+
+  useEffect(() => {
+    fetchCsrfToken().then((res: any) => {
+      if (res.status !== 200) {
+        console.log(res.status);
+      } else {
+        const csrfToken = res.data.csrfToken;
+        Cookies.set("csrftoken", csrfToken, { expires: 20, secure: true });
+      }
+    });
+  }, []);
 
   useEffect(() => {
     if (isLoggedIn()) {

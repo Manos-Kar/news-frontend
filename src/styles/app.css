@@ -471,7 +471,6 @@ body {
   text-overflow: ellipsis;
   display: -webkit-box;
   color: white;
-  -webkit-line-clamp: 6; /* number of lines to show */
   -webkit-box-orient: vertical;
   margin-bottom: 10px;
 }
@@ -702,16 +701,21 @@ footer .nextSunnyDayTextContainer.nextSunnyDayTextContainer.nextSunnyDayTextCont
   flex-direction: column;
   align-items: flex-start;
   border-radius: 20px;
-  width: 500px;
+  width: 700px;
   height: 30px;
   margin-top: 15px;
   z-index: 2;
   color: white;
   padding: 3px 15px;
 }
-@media screen and (max-width: 500px) {
+@media screen and (max-width: 900px) {
   .paoGameContainer {
     zoom: 0.4;
+    width: 80%;
+    margin-left: 10px;
+  }
+  .paoGameContainer .teamName {
+    max-width: 180px !important;
   }
 }
 .paoGameContainer .titleContainer {
